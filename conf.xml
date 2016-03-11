@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<deploy_service>
+	<gateway>
+		<has_deploy>0</has_deploy>
+		<ips>
+			<!--ip's value-->
+			<ip value="110.1.0.0/16"/>
+			<ip value="110.2.0.0/16"/>
+		</ips>
+	</gateway>
+	<phone>
+		<has_deploy>1</has_deploy>
+		<ips>
+			<ip value="120.1.0.0/16"/>
+			<ip value="120.2.0.0/16"/>
+		</ips>
+	</phone>
+	<!--name is test comment-->
+	<name old="19">this is a test</name>
+	<items>
+		<item>one</item>
+		<item>two</item>
+		<item>three</item>
+	</items>
+</deploy_service>
