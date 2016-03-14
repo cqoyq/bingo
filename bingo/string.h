@@ -155,6 +155,12 @@ public:
 		return str_.c_str();
 	}
 
+	const char* convert(const char*& t){
+		clear();
+		str_.append(t);
+		return str_.c_str();
+	}
+
 	const char* convert(const char& t){
 		clear();
 		u8 c = (u8)t;

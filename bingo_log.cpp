@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(t_log_data){
 	void* p = &s1;
 
 	log::log_data data;
-	data + "abcd"
+	data + "abcd this 9000"
 	     + "," + string("1234 89")
 	     + "," + s1
 
@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE(t_log_data){
 	cout << data.str() << endl;
 
 	// output:
-	//	abcd,1234 89,this is a test,238,225,225,123,4567,9090,5e43100,0x7feffe250
+	//	abcd this 9000,1234 89,this is a test,238,225,225,123,4567,9090,5e43100,0x7feffe250
 
 
 }
@@ -68,7 +68,9 @@ BOOST_AUTO_TEST_CASE(t_logger){
 	mylog log;
 	log.level(mylog::LOG_LEVEL_FATAL);
 
-	log.log_f("bad", log::log_data() + "abcd" + "," + "1234");
+	string info = "No such node (application.fsps.ip)";
+
+	log.log_f("bad", log::log_data() + "read cfg.xml fail, error: application.fsps.ip.'value' " + info);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

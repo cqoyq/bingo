@@ -25,6 +25,11 @@ public:
 		return (*this);
 	}
 
+	log_data& operator+(const char* obj){
+		str_.append(t_.convert(obj));
+		return (*this);
+	}
+
 	log_data& operator+(string obj){
 		str_.append(obj.c_str());
 		return (*this);
