@@ -192,6 +192,36 @@ public:
 		ios_.post(bind(&tcp_svr_connection::active_close, this->shared_from_this(), err_code));
 	}
 
+	void active_send(package*& pk){
+
+		if(is_valid_){
+
+			if (f5_){
+				u16 err_code = 0;
+				char* p =  pk->header();
+				if(f5_(this->shared_from_this(), p, pk->length(), err_code) == -1){
+
+					catch_error(err_code);
+
+					free_snd_buffer(pk);
+
+					return;
+				}
+			}
+			boost::asio::async_write(socket_,
+					buffer(pk->header(), pk->length()),
+					boost::bind(&tcp_svr_connection::write_handler,
+							this->shared_from_this(),
+							boost::asio::placeholders::error,
+							boost::asio::placeholders::bytes_transferred,
+							pk));
+
+		}else{
+
+			free_snd_buffer(pk);
+		}
+	}
+
 private:
 	tcp_svr_connection(boost::asio::io_service& io_service,
 			catch_error_callback& 				f1,
@@ -332,35 +362,7 @@ private:
 	}
 
 
-	void active_send(package*& pk){
 
-		if(is_valid_){
-
-			if (f5_){
-				u16 err_code = 0;
-				char* p =  pk->header();
-				if(f5_(this->shared_from_this(), p, pk->length(), err_code) == -1){
-
-					catch_error(err_code);
-
-					free_snd_buffer(pk);
-
-					return;
-				}
-			}
-			boost::asio::async_write(socket_,
-					buffer(pk->header(), pk->length()),
-					boost::bind(&tcp_svr_connection::write_handler,
-							this->shared_from_this(),
-							boost::asio::placeholders::error,
-							boost::asio::placeholders::bytes_transferred,
-							pk));
-
-		}else{
-
-			free_snd_buffer(pk);
-		}
-	}
 
 	void active_close(u16& err_code){
 

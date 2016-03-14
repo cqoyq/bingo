@@ -1,0 +1,4 @@
+version v1.0
+#r1:
+	1. add readme file.
+	2. change 'active_send(package*& pk)' method in tcp_svr_connection.h from private to public.	
