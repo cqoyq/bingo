@@ -31,6 +31,8 @@ public:
 		if(cur_level_ < LOG_LEVEL_FATAL){
 			return;
 		}else{
+			msg_.clear();
+
 			string now;
 			get_now(now);
 			msg_.append(now);
@@ -51,6 +53,8 @@ public:
 		if(cur_level_ < LOG_LEVEL_ERROR){
 			return;
 		}else{
+			msg_.clear();
+
 			string now;
 			get_now(now);
 			msg_.append(now);
@@ -71,6 +75,8 @@ public:
 		if(cur_level_ < LOG_LEVEL_INFO){
 			return;
 		}else{
+			msg_.clear();
+
 			string now;
 			get_now(now);
 			msg_.append(now);
@@ -91,6 +97,8 @@ public:
 		if(cur_level_ < LOG_LEVEL_DEBUG){
 			return;
 		}else{
+			msg_.clear();
+
 			string now;
 			get_now(now);
 			msg_.append(now);
