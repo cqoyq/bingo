@@ -167,6 +167,20 @@ protected:
 };
 
 template<class T>
+struct find_all_of_handler_because_heartjump_timeout{
+	bool operator()(tcp_handler_data& n){
+
+		T* p = static_cast<T*>(n.handler_pointer);
+		if(p){
+			if(p->get_authentication_pass() && p->check_heartjump_timeout()) {
+				return true;
+			}
+		}
+		return false;
+	}
+};
+
+template<class T>
 class tcp_handler_svr_manager : public tcp_handler_manager<T>, public IServerhandler{
 public:
 	tcp_handler_svr_manager() : tcp_handler_manager<T>(), IServerhandler(){}
@@ -180,16 +194,11 @@ public:
 		mutex::scoped_lock lock(this->mu_);
 #endif
 
-		foreach_(tcp_handler_data& n, this->sets_ ){
+		foreach_(tcp_handler_data& n, this->sets_ | adaptors::filtered(find_all_of_handler_because_heartjump_timeout<T>())){
 			T* p = static_cast<T*>(n.handler_pointer);
 			if(p){
-				if(!p->check_authentication_pass()) {
-					p->catch_error(error_tcp_server_close_socket_because_authrication_pass);
-					p->close_socket();
-				}else if (p->check_heartjump_timeout()){
-					p->catch_error(error_tcp_server_close_socket_because_heartjump);
-					p->close_socket();
-				}
+				p->catch_error(error_tcp_server_close_socket_because_heartjump);
+				p->close_socket();
 			}
 		}
 	}

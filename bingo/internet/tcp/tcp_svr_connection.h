@@ -165,6 +165,11 @@ public:
 		set_heartjump_datetime();
 	}
 
+	// Get is_authentication_pass_ status.
+	bool get_authentication_pass(){
+		return is_authentication_pass_;
+	}
+
 
 
 	void send_data_in_thread(char*& sdata, size_t& sdata_size){

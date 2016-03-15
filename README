@@ -3,6 +3,8 @@ version v1.0
 	1. add readme file.
 	2. change 'active_send(package*& pk)' method in tcp_svr_connection.h from private to public.
 #d1:
-	1.fix a problem in string.h which isn't deal constant string with space.
+	fix a problem in string.h which isn't deal constant string with space.
 #d2:
-	1.fix log's message don't clear when every one call logger. 	
+	fix log's message don't clear when every one call logger.
+#d3:
+	fix tcp validate authentication and heartjump on the side of the server.	
