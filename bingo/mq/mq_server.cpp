@@ -97,7 +97,7 @@ int mq_server::run(string& ipv4, u16& port, string& err_what){
 				boost::bind(&mq_server::read_pk_header_complete_handler, 	this, _1, _2, _3, _4, _5),	// read_pk_header_complete_callback
 				boost::bind(&mq_server::read_pk_full_complete_handler, 		this, _1, _2, _3, _4),		// read_pk_full_complete_callback
 				boost::bind(&mq_server::write_pk_full_complete_handler, 	this, _1, _2, _3, _4),		// write_pk_full_complete_callback
-				boost::bind(&mq_server::active_send_in_ioservice_handler, 	this, _1, _2, _3, _4),		// active_send_in_ioservice_callback
+				boost::bind(&mq_server::active_send_in_ioservice_handler, 	this, _1, _2, _3),			// active_send_in_ioservice_callback
 				boost::bind(&mq_server::close_complete_handler, 			this, _1, _2)				// close_complete_callback
 				 );
 
@@ -191,7 +191,7 @@ void mq_server::write_pk_full_complete_handler(mq_server_type::pointer p,
 }
 
 int mq_server::active_send_in_ioservice_handler(mq_server_type::pointer /*p*/,
-		char*& /*snd_p*/, size_t& /*snd_size*/,
+		mq_server_type::package*& /*pk*/,
 		u16& /*err_code*/){
 
 	return 0;

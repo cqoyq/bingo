@@ -26,6 +26,7 @@ namespace bingo { namespace internet { namespace tcp {
 template<typename CONNECTION,
 		 typename MANAGER,
 		 typename PARSER,
+		 typename TCP_MESSAGE_PACKAGE,
 		 typename TSS = thread_tss_data
 		 >
 class tcp_server{
@@ -36,6 +37,7 @@ private:
 public:
 
 	typedef boost::shared_ptr<CONNECTION> pointer;
+	typedef mem_guard<TCP_MESSAGE_PACKAGE> package;
 
 	// Accept callback
 	typedef function<void(const system::error_code& /*ec*/)> 		accept_error_callback;
@@ -49,7 +51,7 @@ public:
 	typedef function<int(pointer /*p*/, char*& /*rev_data*/, size_t& /*rev_data_size*/, u16& /*err_code*/)> 							read_pk_full_complete_callback;
 	typedef function<void(pointer /*p*/, char*& /*snd_p*/, size_t& /*snd_size*/, const boost::system::error_code& /*ec*/)> 				write_pk_full_complete_callback;
 
-	typedef function<int(pointer /*p*/, char*& /*snd_p*/, size_t& /*snd_size*/, u16& /*err_code*/)> active_send_in_ioservice_callback;
+	typedef function<int(pointer /*p*/, package*& /*pk*/, u16& /*err_code*/)> active_send_in_ioservice_callback;
 
 
 	tcp_server(boost::asio::io_service& io_service, string& ipv4, u16& port,

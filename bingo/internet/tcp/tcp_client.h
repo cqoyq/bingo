@@ -46,7 +46,7 @@ public:
 	typedef function<int(pointer /*p*/, char*& /*rev_data*/, size_t& /*rev_data_size*/, u16& /*err_code*/)> 							read_pk_full_complete_callback;
 	typedef function<void(pointer /*p*/, char*& /*snd_p*/, size_t& /*snd_size*/, const boost::system::error_code& /*ec*/)> 				write_pk_full_complete_callback;
 
-	typedef function<int(pointer /*p*/, char*& /*snd_p*/, size_t& /*snd_size*/, u16& /*err_code*/)> 				active_send_in_ioservice_callback;
+	typedef function<int(pointer /*p*/, package*& /*pk*/, u16& /*err_code*/)> 				active_send_in_ioservice_callback;
 
 	typedef function<int(package*& /*pk*/, u16& /*err_code*/)> make_send_first_package_callback;
 

@@ -79,6 +79,7 @@ typedef  tcp_server<
 		mq_server_connection_type,
 		mq_server_mgr_type,
 		mq_server_parse,
+		mq_package,
 		mq_server_tss_data
 			> mq_server_type;
 

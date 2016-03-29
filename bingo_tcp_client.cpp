@@ -234,6 +234,7 @@ typedef bingo::singleton_v0<handler_mgr_svr> my_mgr_svr;
 typedef  tcp_server<my_connection_svr,
 	 				my_mgr_svr,
 	 				my_parse_svr,
+	 				my_package,
 	 				my_tss_data_svr
 	 > my_server;
 

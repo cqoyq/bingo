@@ -46,7 +46,7 @@ private:
 			const boost::system::error_code& /*ec*/);
 
 	int active_send_in_ioservice_handler(mq_server_type::pointer /*p*/,
-			char*& /*snd_p*/, size_t& /*snd_size*/,
+			mq_server_type::package*& /*pk*/,
 			u16& /*err_code*/);
 
 	void close_complete_handler(mq_server_type::pointer p, int& ec_value);

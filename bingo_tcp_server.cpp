@@ -80,6 +80,7 @@ typedef bingo::singleton_v0<handler_mgr> my_mgr;
 typedef  tcp_server<my_connection,
 					my_mgr,
 					my_parse,
+					my_package,
 					my_tss_data
 			> my_server;
 
@@ -844,8 +845,9 @@ int read_pk_full_completed_all(
 	return 0;
 }
 
-int active_send_in_ioservice_authentication_pass(my_server::pointer ptr, char*& snd_p, size_t& snd_size, u16& err_code){
+int active_send_in_ioservice_authentication_pass(my_server::pointer ptr, my_connection::package*& pk, u16& err_code){
 
+	char* snd_p = pk->header();
 	if(snd_p[1] == 0x01){
 		// authencation is pass
 		ptr->set_authentication_pass();

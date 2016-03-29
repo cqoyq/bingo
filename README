@@ -7,4 +7,6 @@ version v1.0
 #d2:
 	fix log's message don't clear when every one call logger.
 #d3:
-	fix tcp validate authentication and heartjump on the side of the server.	
+	fix tcp validate authentication and heartjump on the side of the server.
+#r2:
+	change 'active_send_in_ioservice_callback' function in tcp_svr_connection.h	

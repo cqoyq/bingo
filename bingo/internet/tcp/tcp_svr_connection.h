@@ -51,7 +51,7 @@ public:
 	typedef function<int(pointer /*p*/, char*& /*rev_data*/, size_t& /*rev_data_size*/, u16& /*err_code*/)> 							read_pk_full_complete_callback;
 	typedef function<void(pointer /*p*/, char*& /*snd_p*/, size_t& /*snd_size*/, const boost::system::error_code& /*ec*/)> 				write_pk_full_complete_callback;
 
-	typedef function<int(pointer /*p*/, char*& /*snd_p*/, size_t& /*snd_size*/, u16& /*err_code*/)> active_send_in_ioservice_callback;
+	typedef function<int(pointer /*p*/, package*& /*pk*/, u16& /*err_code*/)> active_send_in_ioservice_callback;
 
 	static pointer create(boost::asio::io_service& io_service,
 			catch_error_callback& 				f1,
@@ -203,8 +203,7 @@ public:
 
 			if (f5_){
 				u16 err_code = 0;
-				char* p =  pk->header();
-				if(f5_(this->shared_from_this(), p, pk->length(), err_code) == -1){
+				if(f5_(this->shared_from_this(), pk, err_code) == -1){
 
 					catch_error(err_code);
 
