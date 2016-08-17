@@ -10,3 +10,5 @@ version v1.0
 	fix tcp validate authentication and heartjump on the side of the server.
 #r2:
 	change 'active_send_in_ioservice_callback' function in tcp_svr_connection.h	
+#r3:
+	add .gitignore file to git.

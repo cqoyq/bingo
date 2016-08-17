@@ -1,0 +1,15 @@
+/.cproject
+/.project
+/.settings
+/*.o
+/*.so
+/test
+/log*
+/*w.xml
+/bingo/mq/*.o
+/bingo/security/*.o
+/bingo/cfg/xml/*.o 
+/bingo/cfg/json/*.o 
+/bingo/persistent/mysql/*.o
+/bingo/persistent/*.o
+/bingo/*.o
